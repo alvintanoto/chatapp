@@ -32,7 +32,7 @@ func (i *implAuthController) Register(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		i.logger.Error(err.Error())
 
-		sendResponse(w, r, http.StatusBadRequest, Response{
+		sendResponse(w, http.StatusBadRequest, Response{
 			Code:    "100000",
 			Message: "failed to decode payload",
 		})
@@ -42,7 +42,7 @@ func (i *implAuthController) Register(w http.ResponseWriter, r *http.Request) {
 	err = i.service.AuthService.Register(payload.Name, payload.Email, payload.Password)
 	if err != nil {
 		// TODO: return response error
-		sendResponse(w, r, http.StatusInternalServerError, Response{
+		sendResponse(w, http.StatusInternalServerError, Response{
 			Code:    "200000",
 			Message: "failed to register user",
 		})
@@ -50,7 +50,7 @@ func (i *implAuthController) Register(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// TODO: return success
-	sendResponse(w, r, http.StatusOK, Response{
+	sendResponse(w, http.StatusOK, Response{
 		Code:    "000000",
 		Message: "success",
 	})

@@ -11,7 +11,7 @@ type Response struct {
 	Data    interface{} `json:"data,omitempty"`
 }
 
-func sendResponse(w http.ResponseWriter, r *http.Request, httpStatus int, response Response) {
+func sendResponse(w http.ResponseWriter, httpStatus int, response Response) {
 	w.WriteHeader(httpStatus)
 	w.Header().Set("Content-Type", "application/json")
 	responseBody, _ := json.Marshal(response)
